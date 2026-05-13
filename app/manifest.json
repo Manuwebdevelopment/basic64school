@@ -1,0 +1,16 @@
+{
+  "name": "Basic64 School",
+  "short_name": "basic64school",
+  "description": "Learn Commodore 64 BASIC through interactive browser lessons with a built-in emulator.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#726CC0",
+  "theme_color": "#008000",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/c64/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/c64/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/favicon.ico", "sizes": "any", "type": "image/x-icon" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,114 @@
+.wrapper {
+  position: relative;
+}
+
+.userCell {
+  display: inline-block;
+}
+
+.userBtn {
+  background: #0a1a0a;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  padding: 0.4rem 0.75rem;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.userBtn:hover {
+  background: #1a3a1a;
+}
+
+.email {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arrow {
+  font-size: 0.75rem;
+}
+
+.premiumBadge {
+  background: #ffd700;
+  color: #000;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  padding: 0.15rem 0.3rem;
+  border-radius: 2px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.25rem;
+  background: #0a1a0a;
+  border: 1px solid #00ff00;
+  border-radius: 4px;
+  padding: 0.75rem;
+  min-width: 220px;
+  z-index: 100;
+}
+
+.dropdownRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+}
+
+.label {
+  color: #888;
+}
+
+.value {
+  color: #00ff00;
+}
+
+.premiumValue {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.freeValue {
+  color: #ff8800;
+}
+
+.dropdownBtn {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  border: 1px solid #00ff00;
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  text-decoration: none;
+  background: #00ff00;
+  color: #000;
+}
+
+.logoutBtn {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  margin-top: 0.35rem;
+  background: none;
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+}
+
+.logoutBtn:hover {
+  background: #330000;
+}

@@ -1,0 +1,650 @@
+/*
+  ======================================
+  basic64school.com C64 Retro Theme - globals.css
+  ======================================
+  Core C64 Colors
+  Primary Blue: #726CC0 (C64 main body color)
+  Light Gray: #D6CDE4 (Screen bg)
+  Purple: #562841 (borders)
+  Dark Gray: #383838 (dark elements)
+  Light Blue: #A8A8FE (highlights)
+  Screen White: #E3DAF0 (text on screen)
+
+  ======================================
+  Global Styles & Resets
+  ======================================
+*/
+
+:root {
+    /* C64 Defined Attributes */
+    --c64-primary-blue: #726CC0;
+    --c64-light-gray: #D6CDE4;
+    --c64-purple: #562841;
+    --c64-dark-gray: #383838;
+    --c64-light-blue: #A8A8FE;
+    --c64-screen-white: #E3DAF0;
+    --c64-background: var(--c64-primary-blue);
+    --c64-screen-bg: var(--c64-light-gray);
+    --c64-border-color: var(--c64-purple);
+    --c64-dark-element-bg: var(--c64-dark-gray);
+
+    /* Typography & Misc */
+    --font-header: 'Press Start 2P', cursive;
+    --font-body: 'VT323', monospace;
+    --c64-scanline-color: rgba(0, 0, 0, 0.1);
+    --c64-text-color: var(--c64-screen-white);
+  }
+
+  /* ----------------------------------- */
+  /* 1. CRT Scanline Overlay Effect */
+  /* ----------------------------------- */
+  body {
+    font-family: var(--font-body);
+    background-color: var(--c64-background);
+    color: var(--c64-text-color);
+    /* Basic CRT setup */
+    overflow-x: hidden;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    /* Scanline effect - layered pseudo-element */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    /* Subtle horizontal scanlines */
+    background-image: linear-gradient(to bottom, var(--c64-scanline-color), transparent);
+    background-size: 100% 100px; /* Adjust line thickness */
+    opacity: 0.6;
+    /* CRT glow effect */
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Ensure content sits above scanlines */
+  .c64-screen-container {
+    position: relative;
+    z-index: 11;
+    background-color: var(--c64-screen-bg);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    border: 8px solid var(--c64-border-color);
+    box-sizing: border-box;
+  }
+
+  /* ----------------------------------- */
+  /* 2. Typography & Headings (Pixel Art) */
+  /* ----------------------------------- */
+  h1, h2, h3, h4 {
+    font-family: var(--font-header);
+    color: var(--c64-text-color);
+    text-shadow: 4px 4px var(--c64-dark-gray); /* Give it a deep pixel look */
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.2em;
+    border-bottom: 2px dashed var(--c64-purple);
+  }
+
+  p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  /* ----------------------------------- */
+  /* 3. Component Styles (Buttons, Cards, etc.) */
+  /* ----------------------------------- */
+
+  /* Block Styling - C64 PETSCII Art Borders */
+  .c64-card {
+    background-color: var(--c64-dark-element-bg);
+    border: 4px solid var(--c64-purple);
+    box-shadow: 6px 6px 0 0 var(--c64-light-blue);
+    padding: 15px;
+    margin-bottom: 1.5rem;
+    /* Simple pixel art border simulation */
+    border-image: linear-gradient(to bottom right, var(--c64-purple), var(--c64-light-blue), var(--c64-purple)) 1;
+  }
+
+  /* Buttons */
+  .btn {
+    background-color: var(--c64-primary-blue);
+    color: var(--c64-text-color);
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: var(--font-header);
+    box-shadow: 4px 4px 0 0 var(--c64-dark-gray);
+    transition: all 0.1s ease-out;
+    border-radius: 0; /* Hard square edges */
+    display: inline-block;
+    margin-right: 10px;
+    /* C64-like click effect: shift box-shadow */
+    box-shadow: 4px 4px 0 0 var(--c64-dark-gray);
+  }
+
+  /* Button Hover Effect (Simulated C64 depth) */
+  .btn:hover {
+    background-color: var(--c64-light-blue);
+    box-shadow: 2px 2px 0 0 var(--c64-dark-gray);
+    transform: translate(2px, 2px);
+  }
+
+  /* Button Active/Click Effect */
+  .btn:active {
+    background-color: var(--c64-dark-gray);
+    box-shadow: 1px 1px 0 0 var(--c64-dark-gray);
+    transform: translate(3px, 3px);
+  }
+
+  /* Code Block Styling (C64 screen green tint) */
+  pre {
+    background-color: #008000; /* Classic C64 Green */
+    color: var(--c64-screen-white);
+    padding: 15px;
+    border-left: 5px solid var(--c64-purple);
+    font-family: var(--font-body);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+
+  code {
+    font-family: var(--font-body);
+  }
+
+  /* Navigation Active State */
+  .nav-link.active {
+    background-color: var(--c64-light-blue);
+    color: var(--c64-background);
+    border-bottom: 4px solid var(--c64-purple);
+  }
+
+  /* ----------------------------------- */
+  /* 4. Other UI Effects & Components */
+  /* ----------------------------------- */
+
+  /* Loading Animation (C64 boot sequence) */
+  .boot-loader {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--c64-text-color);
+    font-size: 1.2em;
+    /* Simple blinking boot sequence text effect */
+    opacity: 1;
+    animation: boot-typing 2s ease-out forwards;
+    white-space: pre-wrap; /* Respect line breaks */
+  }
+  @keyframes boot-typing {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Blinking Cursor Animation (C64 READY prompt style) */
+  .blinking-cursor {
+    display: inline-block;
+    width: 0.7em;
+    height: 1.1em;
+    background-color: var(--c64-text-color);
+    animation: blink-caret 1s linear infinite;
+    margin-left: 5px;
+  }
+  @keyframes blink-caret {
+    from, to { visibility: hidden; }
+    50% { visibility: visible; }
+  }
+
+  /* ----------------------------------- */
+  /* 5. Sprite Grid Component Styling */
+  /* ----------------------------------- */
+  .sprite-grid-container {
+    width: fit-content;
+    display: grid;
+    /* Default grid setup: 8 wide, 21 tall (or responsive equivalent) */
+    grid-template-columns: repeat(8, 20px);
+    grid-template-rows: repeat(21, 20px);
+    gap: 1px; /* Simulate pixel separation */
+    border: 3px solid var(--c64-purple);
+    background-color: var(--c64-dark-gray);
+    margin: 20px auto;
+}
+
+  .sprite-cell {
+    width: 20px;
+    height: 20px;
+    background-color: #1a1a1a; /* Darker blank background */
+    border: 1px dotted rgba(255, 255, 255, 0.1); /* Subtle grid lines */
+    cursor: pointer;
+    transition: background-color 0.1s;
+  }
+
+  .sprite-cell.selected {
+    background-color: var(--c64-light-blue);
+    border: 1px solid var(--c64-purple);
+  }
+
+  /* ----------------------------------- */
+  /* 6. Responsive & Layout */
+  /* ----------------------------------- */
+
+  /* Sidebar (Dark Mode/Dark Purple) */
+  .sidebar {
+    background-color: var(--c64-dark-element-bg);
+    color: var(--c64-text-color);
+    padding: 20px;
+    flex: 1 0 250px; /* Default width on desktop */
+    border-right: 3px solid var(--c64-purple);
+    max-height: 90vh;
+    position: sticky;
+    top: 20px; /* Stick below header */
+}
+
+  @media (max-width: 768px) {
+    /* Mobile Layout: Collapsible Sidebar */
+    .sidebar {
+      position: absolute;
+      z-index: 20;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: -10px 0 20px rgba(0, 0, 0, 0.5);
+      border-right: none;
+      border-bottom: 3px solid var(--c64-purple);
+      max-height: none;
+      width: 85%; /* Take up most of the screen */
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .main-content {
+      padding: 0;
+    }
+  }
+
+  /* Utility Classes */
+  .hidden {
+    display: none !important;
+  }
+
+  /* ----------------------------------- */
+  /* 7. Ghost 404 Animation */
+  /* ----------------------------------- */
+  .error-404 {
+    background-color: var(--c64-dark-element-bg);
+    padding: 50px;
+    text-align: center;
+    margin-top: 50px;
+    border: 3px solid var(--c64-purple);
+    animation: pulse 2s infinite alternate;
+  }
+
+  @keyframes pulse {
+    from { box-shadow: 0 0 10px var(--c64-light-blue); }
+    to { box-shadow: 0 0 30px var(--c64-light-blue), 0 0 15px rgba(0, 0, 0, 0.5); }
+  }
+
+  /* ----------------------------------- */
+  /* 8. Initialization State */
+  /* ----------------------------------- */
+  /* Initially, the site is conceptualized as booting up */
+  .initial-boot-screen {
+    text-align: center;
+    padding: 50px;
+  }
+
+  .initial-boot-screen h1 {
+    font-size: 2em;
+  }
+
+  /* Ensure the body has minimum height for proper layout */
+  body.loaded .c64-screen-container {
+    min-height: 80vh;
+  }
+  
+  /* Final Overrides for the 'Core' feel */
+  body {
+    /* Adding a small text shadow for all elements to unify the retro feel */
+    text-shadow: 2px 2px var(--c64-dark-gray);
+  }
+
+  /* Clean up unused vendor prefixes, ensuring pure CSS retro feel */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Added fallback for font imports if not linked in Next.js style tag (for completeness) */
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+  /* ===== Utility Classes ===== */
+  .flex { display: flex; }
+  .flex-col { flex-direction: column; }
+  .flex-row { flex-direction: row; }
+  .flex-wrap { flex-wrap: wrap; }
+  .flex-1 { flex: 1 1 0%; }
+  .items-center { align-items: center; }
+  .items-start { align-items: flex-start; }
+  .items-end { align-items: flex-end; }
+  .justify-center { justify-content: center; }
+  .justify-between { justify-content: space-between; }
+  .justify-start { justify-content: flex-start; }
+  .justify-end { justify-content: flex-end; }
+  .gap-1 { gap: 0.25rem; }
+  .gap-2 { gap: 0.5rem; }
+  .gap-3 { gap: 0.75rem; }
+  .gap-4 { gap: 1rem; }
+  .grid { display: grid; }
+  .text-center { text-align: center; }
+  .text-left { text-align: left; }
+  .text-right { text-align: right; }
+  .text-sm { font-size: 0.875rem; }
+  .text-lg { font-size: 1.125rem; }
+  .text-xl { font-size: 1.25rem; }
+  .text-2xl { font-size: 1.5rem; }
+  .font-mono { font-family: var(--font-body); }
+  .font-pixel { font-family: var(--font-header); }
+  .font-bold { font-weight: bold; }
+  .uppercase { text-transform: uppercase; }
+  .w-full { width: 100%; }
+  .h-full { height: 100%; }
+  .p-2 { padding: 0.5rem; }
+  .p-4 { padding: 1rem; }
+  .m-2 { margin: 0.5rem; }
+  .mt-4 { margin-top: 1rem; }
+  .mb-4 { margin-bottom: 1rem; }
+  .relative { position: relative; }
+  .overflow-hidden { overflow: hidden; }
+  .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ===== C64 Animations ===== */
+  @keyframes c64-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  .animate-blink {
+    animation: c64-blink 1s step-end infinite;
+  }
+
+  @keyframes c64-scanlines {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 4px; }
+  }
+  .animate-scanlines {
+    animation: c64-scanlines 0.5s linear infinite;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(0,0,0,0.15) 2px,
+      rgba(0,0,0,0.15) 4px
+    );
+  }
+
+  @keyframes c64-flicker {
+    0%, 100% { opacity: 1; }
+    5% { opacity: 0.85; }
+    10% { opacity: 1; }
+    15% { opacity: 0.9; }
+    30% { opacity: 1; }
+    60% { opacity: 0.95; }
+    80% { opacity: 1; }
+    90% { opacity: 0.88; }
+  }
+  .animate-flicker {
+    animation: c64-flicker 4s linear infinite;
+  }
+
+  @keyframes c64-glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+  }
+  .animate-glitch {
+    animation: c64-glitch 0.3s ease-in-out;
+  }
+  .animate-glitch-continuous {
+    animation: c64-glitch 0.3s ease-in-out infinite;
+  }
+
+  @keyframes c64-slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes c64-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ===== C64 UI Components ===== */
+
+  /* Button styles */
+  .c64-btn {
+    font-family: var(--font-header);
+    padding: 0.6rem 1.2rem;
+    border: 3px solid var(--c64-border-color);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    box-shadow: 4px 4px 0 0 var(--c64-dark-gray);
+    transition: all 0.1s ease-out;
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    line-height: 1.4;
+  }
+  .c64-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 var(--c64-dark-gray);
+  }
+  .c64-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 0 var(--c64-dark-gray);
+  }
+  .c64-btn--primary {
+    background-color: var(--c64-primary-blue);
+    color: var(--c64-screen-white);
+  }
+  .c64-btn--secondary {
+    background-color: var(--c64-dark-gray);
+    color: var(--c64-screen-white);
+  }
+  .c64-btn--secondary:hover {
+    background-color: var(--c64-primary-blue);
+  }
+  .c64-btn--danger {
+    background-color: #8B0000;
+    color: var(--c64-screen-white);
+  }
+  .c64-btn--danger:hover {
+    background-color: #a81020;
+  }
+  .c64-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 4px 4px 0 0 var(--c64-dark-gray);
+  }
+
+  /* Progress bar */
+  .c64-progress-bar {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  .c64-progress-bar__label {
+    font-family: var(--font-header);
+    font-size: 0.7rem;
+    color: var(--c64-text-color);
+    text-align: right;
+    margin-bottom: 0.25rem;
+  }
+  .c64-progress-bar__track {
+    background-color: var(--c64-dark-gray);
+    border: 2px solid var(--c64-purple);
+    height: 1.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .c64-progress-bar__fill {
+    height: 100%;
+    background-color: var(--c64-primary-blue);
+    transition: width 0.3s ease-out;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 4px,
+      rgba(0,0,0,0.15) 4px,
+      rgba(0,0,0,0.15) 8px
+    );
+  }
+
+  /* Modal */
+  .c64-modal__overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: c64-fadeIn 0.2s ease-out;
+  }
+  .c64-modal {
+    background-color: var(--c64-dark-element-bg);
+    border: 4px solid var(--c64-border-color);
+    box-shadow: 8px 8px 0 0 var(--c64-light-blue);
+    min-width: 320px;
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: c64-slideIn 0.2s ease-out;
+  }
+  .c64-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 3px solid var(--c64-border-color);
+    background-color: var(--c64-primary-blue);
+  }
+  .c64-modal__title {
+    font-family: var(--font-header);
+    font-size: 0.85rem;
+    color: var(--c64-screen-white);
+    margin: 0;
+    text-shadow: 3px 3px var(--c64-dark-gray);
+  }
+  .c64-modal__close {
+    background: transparent;
+    border: none;
+    color: var(--c64-screen-white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-family: var(--font-body);
+    padding: 0 0.25rem;
+    line-height: 1;
+  }
+  .c64-modal__close:hover {
+    color: #ff6b6b;
+  }
+  .c64-modal__body {
+    padding: 1rem;
+  }
+
+  /* Toast */
+  .c64-toast {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.75rem 1.25rem;
+    border: 3px solid var(--c64-border-color);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 6px 6px 0 0 var(--c64-dark-gray);
+    animation: c64-slideIn 0.25s ease-out;
+  }
+  .c64-toast--visible {
+    animation: c64-slideIn 0.25s ease-out;
+  }
+  .c64-toast--info {
+    background-color: var(--c64-primary-blue);
+    color: var(--c64-screen-white);
+  }
+  .c64-toast--success {
+    background-color: #2d6a00;
+    color: var(--c64-screen-white);
+  }
+  .c64-toast--error {
+    background-color: #8B0000;
+    color: var(--c64-screen-white);
+  }
+  .c64-toast--warning {
+    background-color: #8B6B00;
+    color: var(--c64-screen-white);
+  }
+  .c64-toast__message {
+    flex: 1;
+  }
+  .c64-toast__close {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0 0.25rem;
+    opacity: 0.7;
+  }
+  .c64-toast__close:hover { opacity: 1; }
+
+  /* Badge */
+  .c64-badge {
+    font-family: var(--font-header);
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    border: 2px solid var(--c64-border-color);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .c64-badge--default {
+    background-color: var(--c64-dark-gray);
+    color: var(--c64-screen-white);
+  }
+  .c64-badge--success {
+    background-color: #2d6a00;
+    color: var(--c64-screen-white);
+  }
+  .c64-badge--warning {
+    background-color: #8B6B00;
+    color: var(--c64-screen-white);
+  }
+  .c64-badge--danger {
+    background-color: #8B0000;
+    color: var(--c64-screen-white);
+  }
+  .c64-badge--info {
+    background-color: var(--c64-primary-blue);
+    color: var(--c64-screen-white);
+  }
+  .c64-badge--sm { font-size: 0.5rem; padding: 0.15rem 0.4rem; }
+  .c64-badge--md { font-size: 0.6rem; padding: 0.2rem 0.5rem; }
+  .c64-badge--lg { font-size: 0.75rem; padding: 0.3rem 0.75rem; }

@@ -1,0 +1,103 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #1a1a1a;
+  border: 2px solid #00ff00;
+  border-radius: 4px;
+  padding: 2rem;
+  min-width: 360px;
+  max-width: 90vw;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: #00ff00;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.title {
+  font-family: 'Press Start 2P', monospace;
+  color: #00ff00;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.googleBtn {
+  width: 100%;
+  padding: 0.75rem;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.divider {
+  text-align: center;
+  color: #555;
+  margin: 0.75rem 0;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  background: #0a1a0a;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #335533;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background: #00ff00;
+  color: #000;
+  border: none;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #ff4444;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.signupLink {
+  text-align: center;
+  color: #888;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  margin-top: 1rem;
+}

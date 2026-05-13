@@ -1,0 +1,26 @@
+.container {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #00ff00;
+  background: #0a1a0a;
+  color: #00ff00;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background: #00ff00;
+  color: #000;
+}
+
+.done {
+  background: #00ff00;
+  color: #000;
+  cursor: default;
+}

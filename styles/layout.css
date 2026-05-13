@@ -1,0 +1,438 @@
+/* ===== Sidebar Styles ===== */
+.c64-mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  background: #726CC0;
+  color: #E3DAF0;
+  border: 3px solid #562841;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 0 #383838;
+}
+
+.c64-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: #383838;
+  color: #E3DAF0;
+  border-right: 3px solid #562841;
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.c64-sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem 1.25rem;
+}
+
+.c64-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed #562841;
+}
+
+.c64-logo-highlight {
+  color: #008000;
+}
+
+.c64-prepare-box {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.65rem;
+  color: #008000;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem;
+  background: #003000;
+  border: 2px dashed #562841;
+  text-align: center;
+  animation: c64-blink 1s step-end infinite;
+}
+
+.c64-sidebar-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.c64-sidebar-links li {
+  margin-bottom: 0.5rem;
+}
+
+.c64-link {
+  display: block;
+  padding: 0.65rem 1rem;
+  color: #A8A8FE;
+  text-decoration: none;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  border: 2px solid transparent;
+  border-left: 3px solid transparent;
+  transition: all 0.1s ease-out;
+}
+
+.c64-link:hover {
+  color: #E3DAF0;
+  border-left-color: #008000;
+  background: rgba(114, 108, 192, 0.3);
+}
+
+.c64-link-active {
+  display: block;
+  padding: 0.65rem 1rem;
+  color: #008000;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.65rem;
+  border: 2px solid #562841;
+  border-left: 4px solid #008000;
+  background: rgba(0, 128, 0, 0.15);
+  letter-spacing: 0.05em;
+}
+
+.c64-sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 2px solid #562841;
+  text-align: center;
+}
+
+.c64-github-link {
+  color: #A8A8FE;
+  text-decoration: none;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.c64-github-link:hover {
+  color: #E3DAF0;
+}
+
+.c64-copy {
+  font-size: 0.75rem;
+  color: #888;
+  margin: 0;
+}
+
+/* Overlay for mobile sidebar */
+.c64-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 45;
+}
+
+/* Scrollbar styling */
+.c64-sidebar-inner::-webkit-scrollbar {
+  width: 6px;
+}
+
+.c64-sidebar-inner::-webkit-scrollbar-track {
+  background: #282828;
+}
+
+.c64-sidebar-inner::-webkit-scrollbar-thumb {
+  background: #562841;
+  border-radius: 3px;
+}
+
+/* ===== Layout Wrapper ===== */
+.c64-layout-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.c64-main-content {
+  flex: 1;
+  margin-left: 260px;
+  padding: 2rem 3rem;
+  min-height: 100vh;
+}
+
+/* C64 Screen Container */
+.c64-screen-container {
+  background-color: #008000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  width: 100%;
+  max-width: 900px;
+  border: 8px solid #562841;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* C64 Flicker Animation */
+@keyframes c64-flicker {
+  0%, 100% { opacity: 1; }
+  2% { opacity: 0.85; }
+  4% { opacity: 1; }
+  8% { opacity: 0.9; }
+  20% { opacity: 1; }
+  55% { opacity: 0.95; }
+  70% { opacity: 1; }
+  90% { opacity: 0.88; }
+}
+
+.c64-flicker {
+  animation: c64-flicker 4s linear infinite;
+}
+
+/* C64 Scanner Line Effect */
+@keyframes c64-scanline-move {
+  from { background-position: 0 0; }
+  to { background-position: 0 4px; }
+}
+
+.c64-scanner {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+  background-size: 100% 4px;
+  animation: c64-scanline-move 0.8s linear infinite;
+  width: 100%;
+  min-height: 400px;
+  padding: 1.5rem;
+}
+
+/* ===== C64 Lesson page ===== */
+.c64-lesson-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.c64-lesson-topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px dashed #562841;
+}
+
+.c64-lesson-back-link {
+  color: #A8A8FE;
+  text-decoration: none;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+}
+
+.c64-lesson-back-link:hover {
+  color: #E3DAF0;
+  text-decoration: underline;
+}
+
+.c64-lesson-level-badge {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.55rem;
+  color: #008000;
+  padding: 0.35rem 0.75rem;
+  background: #003000;
+  border: 2px solid #562841;
+}
+
+.c64-lesson-meta {
+  color: #888;
+  font-family: 'VT323', monospace;
+  margin-left: auto;
+}
+
+.c64-lesson-header {
+  margin-bottom: 2rem;
+}
+
+.c64-lesson-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  color: #008000;
+  text-shadow: 3px 3px #383838;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.c64-lesson-number {
+  color: #A8A8FE;
+}
+
+.c64-lesson-concepts {
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  color: #E3DAF0;
+  opacity: 0.8;
+}
+
+.c64-lesson-body {
+  font-family: 'VT323', monospace;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #E3DAF0;
+  margin-bottom: 2rem;
+}
+
+.c64-lesson-body p {
+  margin-bottom: 1rem;
+}
+
+.c64-lesson-body h2 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.85rem;
+  color: #008000;
+  border-bottom: 2px dashed #562841;
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+.c64-lesson-body h3 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  color: #A8A8FE;
+  margin-top: 1.5rem;
+}
+
+.c64-lesson-body pre {
+  background: #003000;
+  color: #33FF33;
+  padding: 1rem;
+  border: 2px solid #562841;
+  overflow-x: auto;
+  font-family: 'VT323', monospace;
+  margin: 1rem 0;
+}
+
+.c64-lesson-body .c64-line {
+  margin: 0.25rem 0;
+  padding-left: 1.5rem;
+}
+
+.c64-lesson-body .c64-comment {
+  color: #888;
+}
+
+.c64-lesson-body .token-keyword {
+  color: #FF0000;
+  font-weight: bold;
+}
+
+.c64-lesson-body .token-string {
+  color: #00AA00;
+}
+
+.c64-lesson-body .token-number {
+  color: #FFFF00;
+}
+
+.c64-lesson-body .token-function {
+  color: #FF6600;
+}
+
+.c64-lesson-body .token-operator {
+  color: #E3DAF0;
+}
+
+.c64-lesson-body .token-variable {
+  color: #FFFFFF;
+  font-style: italic;
+}
+
+.c64-lesson-body ul, .c64-lesson-body ol {
+  padding-left: 2rem;
+}
+
+.c64-lesson-body li {
+  margin: 0.5rem 0;
+}
+
+/* Try-It Section */
+.c64-lesson-tryit {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px dashed #562841;
+}
+
+/* Lesson Navigation */
+.c64-lesson-nav {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px dashed #562841;
+}
+
+/* Footer C64 art */
+.c64-lesson-footer {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.c64-lesson-footer pre {
+  display: inline-block;
+  color: #008000;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5rem;
+  line-height: 1.8;
+  background: transparent;
+  border: none;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .c64-main-content {
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .c64-mobile-menu-btn {
+    display: block;
+  }
+
+  .c64-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    width: 85%;
+    z-index: 100;
+  }
+
+  .c64-sidebar-open {
+    transform: translateX(0);
+  }
+
+  .c64-main-content {
+    margin-left: 0;
+    padding: 4rem 1rem 2rem;
+  }
+
+  .c64-lesson-topbar {
+    flex-wrap: wrap;
+  }
+
+  .c64-lesson-title {
+    font-size: 0.8rem;
+  }
+
+  .c64-lesson-body {
+    font-size: 1rem;
+  }
+}

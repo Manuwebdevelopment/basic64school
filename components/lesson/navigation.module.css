@@ -1,0 +1,127 @@
+.c64-navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #383838;
+  border: 4px solid #562841;
+  box-shadow: 8px 8px 0 0 #726CC0;
+}
+
+.c64-nav-arrow-left,
+.c64-nav-arrow-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.c64-nav-arrow-left {
+  text-align: left;
+}
+
+.c64-nav-arrow-right {
+  text-align: right;
+}
+
+.c64-arrow-left,
+.c64-arrow-right {
+  font-size: 2rem;
+  color: #008000;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.c64-nav-content {
+  flex: 1;
+}
+
+.c64-nav-label {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  color: #A8A8FE;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.c64-nav-link {
+  font-family: "VT323", monospace;
+  font-size: 1rem;
+  color: #E3DAF0;
+  text-decoration: none;
+  padding: 0.5rem;
+  display: block;
+  border: 2px dashed #562841;
+  transition: all 0.1s ease-out;
+  background: #008000;
+  margin-bottom: 0.5rem;
+}
+
+.c64-nav-link:hover {
+  background: #00a000;
+  border-color: #A8A8FE;
+  transform: translateX(-3px);
+}
+
+.c64-nav-arrow-right .c64-nav-link:hover {
+  transform: translateX(3px);
+}
+
+.c64-nav-title {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.c64-nav-level {
+  font-size: 0.85rem;
+  color: #A8A8FE;
+}
+
+.c64-nav-empty {
+  color: #888;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  opacity: 0.5;
+}
+
+/* Level navigation */
+.c64-level-nav {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #383838;
+  border: 3px solid #562841;
+}
+
+.c64-level-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.c64-level-icon {
+  font-size: 1.2rem;
+}
+
+.c64-level-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7rem;
+  color: #008000;
+}
+
+.c64-progress-text {
+  font-size: 0.95rem;
+  color: #E3DAF0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .c64-navigation {
+    grid-template-columns: 1fr;
+  }
+  
+  .c64-nav-link {
+    font-size: 0.9rem;
+  }
+}
