@@ -1,17 +1,21 @@
 // app/api/stripe/checkout/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+function getStripe() {
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey) throw new Error('STRIPE_SECRET_KEY is not configured');
+  return new Stripe(secretKey);
+}
 
 export async function POST(req: NextRequest) {
-  const { data: { session }, error: authError } = await supabase.auth.getSession();
+  const client = await (await import('@/lib/supabase-server')).createClient();
+  const { data: { session }, error: authError } = await client.auth.getSession();
   if (authError || !session) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
 
-  const { data: profile } = await supabase
+  const { data: profile } = await client
     .from('profiles')
     .select('stripe_customer_id')
     .eq('id', session.user.id)
@@ -20,13 +24,13 @@ export async function POST(req: NextRequest) {
   let customerId = profile?.stripe_customer_id;
 
   if (!customerId) {
-    const customer = await stripe.customers.create({
+    const customer = await getStripe().customers.create({
       email: session.user.email!,
       metadata: { supabase_uid: session.user.id },
     });
     customerId = customer.id;
 
-    await supabase
+    await client
       .from('profiles')
       .update({ stripe_customer_id: customerId })
       .eq('id', session.user.id);
@@ -34,7 +38,7 @@ export async function POST(req: NextRequest) {
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://basic64school.com';
 
-  const checkoutSession = await stripe.checkout.sessions.create({
+  const checkoutSession = await getStripe().checkout.sessions.create({
     customer: customerId,
     line_items: [
       {
