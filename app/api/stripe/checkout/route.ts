@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     .eq('id', session.user.id)
     .single();
 
-  let customerId: string | null = (profile as { stripe_customer_id: number | null } | null)?.stripe_customer_id?.toString() ?? null;
+  let customerId: string | null = (profile as any)?.stripe_customer_id?.toString() ?? null;
 
   if (!customerId) {
     const customer = await getStripe().customers.create({
@@ -30,9 +30,10 @@ export async function POST(req: NextRequest) {
     });
     customerId = customer.id;
 
+    // @ts-ignore — Supabase DB types define stripe_customer_id as number, but Stripe assigns a string ID
     await client
       .from('profiles')
-      .update({ stripe_customer_id: String(customerId) } as Record<string, number | string | null>)
+      .update({ stripe_customer_id: customerId })
       .eq('id', session.user.id);
   }
 
