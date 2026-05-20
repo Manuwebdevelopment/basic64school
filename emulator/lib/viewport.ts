@@ -36,17 +36,17 @@ export type ViewportMode = 'ntsc' | 'pal' | 'custom';
 
 export class VICIIViewport {
   /** Total screen width in pixels (including borders) */
-  readonly totalWidth: number;
+  totalWidth: number;
   /** Total screen height in pixels */
-  readonly totalHeight: number;
+  totalHeight: number;
   /** Screen region (playfield) width in pixels */
-  readonly screenW: number;
+  screenW: number;
   /** Screen region (playfield) height in pixels */
-  readonly screenH: number;
+  screenH: number;
   /** Border width (left/right) in pixels */
-  readonly borderLeft: number;
+  borderLeft: number;
   /** Border width (top/bottom) */
-  readonly borderTop: number;
+  borderTop: number;
 
   // State
   private _scrollX: number = 0;
