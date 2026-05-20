@@ -21,7 +21,9 @@ export async function POST(req: NextRequest) {
     .eq('id', session.user.id)
     .single();
 
-  let customerId = profile?.stripe_customer_id ?? null;
+  const profileData = profile ?? null;
+
+  let customerId = profileData?.stripe_customer_id ?? null;
 
   if (!customerId) {
     const customer = await getStripe().customers.create({
