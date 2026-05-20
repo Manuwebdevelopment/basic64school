@@ -30,9 +30,8 @@ export async function POST(req: NextRequest) {
     });
     customerId = customer.id;
 
-      // @ts-ignore — Supabase defines stripe_customer_id as number, Stripe uses string IDs
-      .update({ stripe_customer_id: customerId } as any)
-      .eq('id', session.user.id);
+    // @ts-ignore
+    await client.from('profiles').update({ stripe_customer_id: customerId as any }).eq('id', session.user.id);
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://basic64school.com';
