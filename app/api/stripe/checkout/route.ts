@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
 
     await client
       .from('profiles')
-      .update({ stripe_customer_id: customerId })
+      .update({ stripe_customer_id: String(customerId) } as Record<string, number | string | null>)
       .eq('id', session.user.id);
   }
 
