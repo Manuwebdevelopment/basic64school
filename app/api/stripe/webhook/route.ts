@@ -3,15 +3,20 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { supabase } from '@/lib/supabase';
 
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 if (!webhookSecret) {
-  throw new Error('STRIPE_WEBHOOK_SECRET is not set');
+  // Not set yet — during build the env var won't exist. Just log and be ready.
+  console.log('[WARNING] Stripe webhook not configured — webhook handler will be disabled');
 }
 
-const stripe = new Stripe(webhookSecret);
-
 export async function POST(req: NextRequest) {
+  if (!webhookSecret) {
+    // Webhook not configured — silently reject
+    return NextResponse.json({ received: false }, { status: 200 });
+  }
+
+  const stripe = new Stripe(webhookSecret);
   const body = await req.text();
   const sig = req.headers.get('stripe-signature');
 
