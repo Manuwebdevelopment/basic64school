@@ -1,6 +1,6 @@
 const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
-const nextPlugin = require('eslint-config-next/turbo');
+const nextPlugin = require('eslint-config-next');
 
 module.exports = [
   eslint.configs.recommended,
